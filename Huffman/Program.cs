@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +11,32 @@ namespace Huffman
         static void Main()
         {
             var huffman = new Huffman();
-            string texto = "Huffman";
+            string[] texto = new string[]
+            { 
+            "Huffman",
+            "Compresion",
+            "Algoritmo",
+            "Vaca",
+            "Bob Esponja",
+            "Gorilas",
+            "Tetraedro",
+            "Mouse",
+            "Coffee"
+            };
 
-            var arbol = huffman.ConstruirArbol(texto);
-            var tabla = huffman.ConstruirTabla(arbol);
+            foreach (var tex in texto)
+            {
+                var arbol = huffman.ConstruirArbol(tex);
+                var tabla = huffman.ConstruirTabla(arbol);
 
-            string codificado = huffman.Codificar(texto, tabla);
-            string decodificado = huffman.Decodificar(codificado, arbol);
+                string codificado = huffman.Codificar(tex, tabla);
+                string decodificado = huffman.Decodificar(codificado, arbol);
 
-            Console.WriteLine($"Original: {texto}");
-            Console.WriteLine($"Codificado: {codificado}");
-            Console.WriteLine($"Decodificado: {decodificado}");
+                Console.WriteLine($"Original: {tex}");
+                Console.WriteLine($"Codificado: {codificado}");
+                Console.WriteLine($"Decodificado: {decodificado}");
+                Console.WriteLine(new string('-', 50));
+            }
         }
     }
 }
