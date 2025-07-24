@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace Huffman
 {
+    // Programa de ejecución para las pruebas para Huffman
     class Program
     {
         static void Main()
         {
             var huffman = new Huffman();
+
+            // Palabras a codificar y decodificar
             string[] texto = new string[]
             { 
             "Huffman",
@@ -24,6 +27,7 @@ namespace Huffman
             "Coffee"
             };
 
+            // Procesamiento de cada palabra
             foreach (var tex in texto)
             {
                 var arbol = huffman.ConstruirArbol(tex);
