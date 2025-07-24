@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace Huffman
 {
+    // Clase principal con toda la lógica del algoritmo de Huffman
     public class Huffman
     {
+        // Construye el árbol de Huffman a partir del texto
         public NodoHuffman ConstruirArbol(string texto)
         {
             var frecuencia = new Dictionary<char, int>();
 
+            // Conteo de frecuencia por carácter
             foreach (char ch in texto)
             {
                 if (!frecuencia.ContainsKey(ch)) 
@@ -23,6 +26,7 @@ namespace Huffman
 
             var cola = new PriorityQueue<NodoHuffman, int>();
 
+            // Crea nodos hoja por cada carácter
             foreach (var par in frecuencia)
             {
                 var nodo = new NodoHuffman
@@ -33,6 +37,7 @@ namespace Huffman
                 cola.Enqueue(nodo, nodo.Frecuencia);
             }
 
+            // Construcción del árbol binario al combinar nodos (izquierda y derecha)
             while (cola.Count > 1)
             {
                 var izq = cola.Dequeue();
@@ -47,9 +52,10 @@ namespace Huffman
                 cola.Enqueue(nuevo, nuevo.Frecuencia);
             }
 
-            return cola.Dequeue();
+            return cola.Dequeue(); // Devuelve la raíz del árbol
         }
 
+        // Genera una tabla de códigos binarios para cada símbolo
         public Dictionary<char, string> ConstruirTabla(NodoHuffman raiz)
         {
             var mapa = new Dictionary<char, string>();
@@ -57,6 +63,7 @@ namespace Huffman
             return mapa;
         }
 
+        // Método recursivo para recorrer el árbol binario y asignar códigos binarios
         private void GenerarCodigo(NodoHuffman nodo, string codigo, Dictionary<char, string> mapa)
         {
             if (nodo.EsHoja)
@@ -69,6 +76,7 @@ namespace Huffman
             GenerarCodigo(nodo.Derecha, codigo + "1", mapa);
         }
 
+        // Codifica el texto ingresado usando la tabla de códigos
         public string Codificar(string texto, Dictionary<char, string> mapa)
         {
             var resultado = new StringBuilder();
@@ -78,6 +86,8 @@ namespace Huffman
             }
             return resultado.ToString();
         }
+
+        // Decodifica el código binario y lo transforma a la entrada de texto
         public string Decodificar(string binario, NodoHuffman raiz)
         {
             var resultado = new StringBuilder();
