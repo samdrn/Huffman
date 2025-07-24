@@ -8,7 +8,7 @@ La técnica Huffman es un tipo de compresión sin perdida basada en frecuencias 
 - 'Program.cs' - Punto de entrada de la aplicación, procesa varios ejemplos.
 ## Ejecución
 Al ejecutar el programa, devolverá la codificación y decodificación de una lista de palabras usando Huffman.
-## Ejemplo
+## Ejemplo:
 - Original: Huffman
 - Codificado: 110011101000010111
 - Decodificado: Huffman
