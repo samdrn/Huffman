@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Huffman
 {
+    // Comparador que permite ordenar Nodos por frecuencia ascendente (de menor a mayor)
     public class ComparadorHuffman : IComparer<NodoHuffman>
     {
         public int Compare(NodoHuffman x, NodoHuffman y)
